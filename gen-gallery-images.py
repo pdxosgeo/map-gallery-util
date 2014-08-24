@@ -1,6 +1,7 @@
-'''Generates small and medium gallery images from a set of large originals
+'''Generates small and medium gallery images from a set of large originals.  Some maps will be tall, some wide, some square so we want to simply maintain the ratio and resize down to a set maximum.
 
-Some maps will be tall, some wide, some square so we want to simply maintain the ratio and resize down to a set maximum.
+Original images need to be downloaded to the large path below.  They are accessible in this Dropbox folder
+https://www.dropbox.com/sh/z9fjbfquwd1t5st/AAAxV22dpleDodnxJqiertt0a?dl=0
 '''
 
 from wand.image import Image
