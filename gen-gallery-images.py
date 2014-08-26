@@ -1,7 +1,9 @@
 '''Generates small and medium gallery images from a set of large originals.  Some maps will be tall, some wide, some square so we want to simply maintain the ratio and resize down to a set maximum.
 
-Original images need to be downloaded to the large path below.  They are accessible in this Dropbox folder
+Original images need to be downloaded to the large image path below.  They are accessible in this Dropbox folder
 https://www.dropbox.com/sh/z9fjbfquwd1t5st/AAAxV22dpleDodnxJqiertt0a?dl=0
+
+Once large, medium, and small images are in place the folders are copied into the foss4g Wordpress theme, in the uploads/mapgallery folder where the images are served from to the map gallery page.  See the map gallery page template.
 '''
 
 from wand.image import Image
