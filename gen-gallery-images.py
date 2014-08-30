@@ -14,15 +14,14 @@ small_size = 400
 med_size = 1280
 
 img_path = "/Users/twelch/src/foss4g2014-wordpress/uploads/mapgallery/"
+orig_path = img_path+"orig/"
 large_path = img_path+"large/"
 med_path = img_path+"medium/"
 small_path = img_path+"small/"
 
 #Get list of files in directory
-img_files = [ f for f in listdir(large_path) if isfile(join(large_path,f)) ]
-
+img_files = [ f for f in listdir(orig_path) if isfile(join(orig_path,f)) ]
 print "Looking for images in: " + img_path
-
 print "Found the following: " + str(img_files)
 
 for f in img_files:
@@ -31,25 +30,31 @@ for f in img_files:
     else:
         print "Processing image: "+f
         #Create image objects for small and medium using original large
-        mi = Image(filename=join(large_path,f))
+        li = Image(filename=join(orig_path,f))
+        mi = li.clone()
         si = mi.clone()
 
         print 'Original: '+str(mi.width)+'x'+str(mi.height)
 
-        #Resize maintaining aspect ratio
+        #Resize to med and small maintaining aspect ratio
         mi.transform(resize=str(med_size)+'x'+str(med_size)+'>')
         print 'Medium: '+str(mi.width)+'x'+str(mi.height)
         si.transform(resize=str(small_size)+'x'+str(small_size)+'>')
         print 'Small: '+str(si.width)+'x'+str(si.height)
 
         #Convert to JPEG if necessary and save as new file
+        lf = join(large_path,f)
+        if li.format != 'JPEG':
+            li = li.convert('jpeg')
+        li.save(filename=lf[:-3]+'jpg')
+
         mf = join(med_path,f)
         if mi.format != 'JPEG':
-            mi.convert('jpeg')
-        mi.save(filename=mf)
+            mi = mi.convert('jpeg')
+        mi.save(filename=mf[:-3]+'jpg')
 
         sf = join(small_path,f)
-        if si.format != 'JPEG':
-            si.convert('jpeg')
-        si.save(filename=sf)
+        if si.format != 'JPEG':            
+            si = si.convert('jpeg')
+        si.save(filename=sf[:-3]+'jpg')
         
