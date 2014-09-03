@@ -18,12 +18,12 @@ for rec in j:
         soft = 'x'
     if "Open Source data integration" in rec['category']:
         data = 'x'
-    if "Web Map Application" in rec['category']:
-        web = 'x'
     if "Static Map" in rec['category']:
         static = 'x'
+    if "Web Map Application" in rec['category']:
+        web = 'x'
                     
-    maps.append([rec['id'],rec['title'],soft,data,web,static])
+    maps.append([rec['id'],rec['title'],soft,data,static,web])
 
 for map in maps: print map
 
